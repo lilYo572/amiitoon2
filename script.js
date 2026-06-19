@@ -433,60 +433,53 @@ let owned = loadOwned();
 // ── État de l'application
 let currentFilter = 'all'; // 'all' | 1 | 2 | 3 | 'raiders' | 'info'
 
-// ── IDs d'images confirmés à 100% (depuis amiibo.json du repo AmiiboAPI)
-const IMG_BASE = 'https://raw.githubusercontent.com/N3evin/AmiiboAPI/master/images/icon_';
-const KNOWN_IMAGE_IDS = {
-  // Seuls les IDs extraits directement du fichier amiibo.json et vérifiés par nom exact
-  's3-inkling-yellow': '08000100-04150402', // ✓ "Inkling - Yellow" dans amiibo.json
-  's3-shiver':         '08070000-04330402', // ✓ "Shiver" dans amiibo.json
-  's3-frye':           '08080000-04340402', // ✓ "Frye" dans amiibo.json
-  's3-bigman':         '08090000-04350402', // ✓ "Big Man" dans amiibo.json
+// ── Images directement depuis amiibo.life (toutes vérifiées)
+const AL = 'https://amiibo.life/assets/figures/amiibo/splatoon/';
+const AMIIBO_IMAGES = {
+  // Splatoon 1 — Vague 1
+  's1-girl-orange':     AL + 'inkling-girl-f1d802538ad1f255c7f1effd49c054d23e45df2cdcbf477c3601a39172c206c8.png',
+  's1-boy-blue':        AL + 'inkling-boy-a80fb08b13693e551d9991f9b1a944c9d7e2dea9c5f62441fff84eceb9feb36a.png',
+  's1-squid-green':     AL + 'inkling-squid-4480133eda5adc7bcff15606ecc372a776b4cd12d68b4981a63d899e84ee2353.png',
+  // Splatoon 1 — Vague 2
+  's1-callie':          AL + 'callie-7e1e4a0f045ec272e976be692cf466b6e29bc0fe86a5c8ca9f1b991c37e44e2f.png',
+  's1-marie':           AL + 'marie-583f82cc7d577b73305da7790961148ef3aa0177f9126a9dcd10393bdc4e899a.png',
+  's1-boy-purple':      AL + 'inkling-boy-purple-98c5f8e65981b820e74094ca0385c9f6d103d4da3691d86a2980a5d98a8274b7.png',
+  's1-girl-green':      AL + 'inkling-girl-lime-green-bc52db1c411f9eb4f42c7f47ff66e959d3518d3964bbe42b657f5695f5266d89.png',
+  's1-squid-orange':    AL + 'inkling-squid-orange-da4d597d6a4ab8281a06640982a948b9c7806042749bf63d11b3bffcd3053576.png',
+  // Splatoon 2 — Vague 3
+  's2-girl-pink':       AL + 'inkling-girl-neon-pink-923face3a1801bdf9396d77d5f575fdda51d4fe54d37c84d9cd192337c722720.png',
+  's2-boy-green':       AL + 'inkling-boy-neon-green-e4926da73e705bba28127e3635e3434db4129e676d6160f210651821d2de4c21.png',
+  's2-squid-purple':    AL + 'inkling-squid-neon-purple-ad466b88b70750d2e4099b648cc4230d1006981431fe33171dbc9eb07157eb1b.png',
+  // Splatoon 2 — Vague 4
+  's2-pearl':           AL + 'pearl-d5e40d7f7ab1c149a6a1e3611c56b034bff990d32efde5b555bd998e0e7347fb.png',
+  's2-marina':          AL + 'marina-da21ecd1c30b604c4313a00b8324cf3f4dfa8d72bd777ccc3b3c6cd6db53cc83.png',
+  // Splatoon 2 — Vague 5
+  's2-octoling-girl':   AL + 'octoling-girl-9d5144aab476de1647681a6ac16d986b9c1c5e6fe1dbf89fde0b8f61e4e6ac9a.png',
+  's2-octoling-boy':    AL + 'octoling-boy-3b369e4710a048efe04f33b042288a86873586d2ff001a74eaea8ad5e4eec0aa.png',
+  's2-octoling-octopus':AL + 'octoling-octopus-0c8396b495b0c9f22a2dfd6940dc4fe3e0bcc6c563fe054f9e8444c80714df62.png',
+  // Splatoon 3 — Vague 7
+  's3-inkling-yellow':  AL + 'inkling-yellow-45f90832cc9c9aecfeed6e7020a0696af7ee00cd93b1b1c488683d478d3a8140.png',
+  's3-octoling-blue':   AL + 'octoling-blue-7cc177de5aedb455a97547b170d1dc6bc9c03b63601d5af710fc5016e3824fa5.png',
+  's3-smallfry':        AL + 'smallfry-45265040d68a662447fae154b9613053b703307a851e8b9ea2cafc839246bdf2.png',
+  // Splatoon 3 — Vague 8
+  's3-shiver':          AL + 'shiver-9fb56a75d77120cd244759ef1bcda8b1d56b5cc93bba35ddc1701b84b55743b6.png',
+  's3-frye':            AL + 'frye-d0f7d3c7c74da7168a6f4fbfeedaf07e46cdad887828cade7e6c70eeb6b893e4.png',
+  's3-bigman':          AL + 'big-man-c5b821d5440e5de1a474e2f2f0b82159c82526f7de4d33b93e43a458215e529d.png',
+  // Splatoon 3 — Vague 9
+  's3-callie-alterna':  AL + 'callie-alterna-a49354eb5a19ffc61f1cc18d7de7d02f27b0ce3538582fb31c44c74207156a21.png',
+  's3-marie-alterna':   AL + 'marie-alterna-898259f385f11349cee3a984b1194a4cf13d678b27bee18e7a6ad5c84e92009e.png',
+  's3-pearl-sideorder': AL + 'pearl-side-order-9d57aa508780a405aef59128538a1499c6b86fd5eb879cfc4ac6a98bbe0d8256.png',
+  's3-marina-sideorder':AL + 'marina-side-order-f8ab4b11486a435b2f8e4e4f9d6c3d00d7331ae61e03e66a84f621a339d628f6.png',
+  // Raiders — pas encore sortis (pas d'image disponible)
 };
 
-// ── Fetch images via API amiiboapi.com (pour tous les amiibo sans ID hardcodé)
+// ── Application des images (aucun appel API nécessaire)
 async function fetchAmiiboImages() {
-  // Étape 1 : appliquer les IDs hardcodés confirmés
   AMIIBO_DATA.forEach(a => {
-    if (KNOWN_IMAGE_IDS[a.id]) {
-      a.image = IMG_BASE + KNOWN_IMAGE_IDS[a.id] + '.png';
+    if (AMIIBO_IMAGES[a.id]) {
+      a.image = AMIIBO_IMAGES[a.id];
     }
   });
-
-  // Étape 2 : API pour les amiibo sans image
-  try {
-    const res = await fetch('https://www.amiiboapi.com/api/amiibo/?gameseries=Splatoon');
-    const data = await res.json();
-    const apiList = data.amiibo.filter(a => a.type === 'Figure');
-
-    // Tri par date de sortie (plus ancien en premier → variantIndex=0 = plus ancien)
-    const sortByRelease = (a, b) => {
-      const da = new Date(a.release?.eu || a.release?.jp || a.release?.na || '9999');
-      const db = new Date(b.release?.eu || b.release?.jp || b.release?.na || '9999');
-      return da - db;
-    };
-
-    // Grouper par nom exact, trié par date
-    const groups = {};
-    apiList.forEach(api => {
-      const key = api.name.toLowerCase().trim();
-      if (!groups[key]) groups[key] = [];
-      groups[key].push(api);
-    });
-    Object.values(groups).forEach(g => g.sort(sortByRelease));
-
-    // Assigner les images
-    AMIIBO_DATA.forEach(a => {
-      if (a.image) return; // déjà défini par hardcoded
-      const key = a.nameEN.toLowerCase().trim();
-      const pool = groups[key] || [];
-      if (pool[a.variantIndex]) {
-        a.image = pool[a.variantIndex].image;
-      }
-    });
-
-  } catch (e) {
-    console.warn('AmiiToon: API image fetch failed', e);
-  }
 }
 
 // ── Mode clair / sombre
