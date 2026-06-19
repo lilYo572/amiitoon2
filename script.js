@@ -433,30 +433,94 @@ let owned = loadOwned();
 // ── État de l'application
 let currentFilter = 'all'; // 'all' | 1 | 2 | 3 | 'raiders' | 'info'
 
-// ── Fetch images depuis amiiboapi.com
+// ── IDs d'images confirmés (GitHub raw AmiiboAPI)
+const IMG_BASE = 'https://raw.githubusercontent.com/N3evin/AmiiboAPI/master/images/icon_';
+const KNOWN_IMAGE_IDS = {
+  's1-girl-orange':    '01010000-03560902', // ✓ confirmé
+  's1-squid-green':    '01050000-03580902', // ✓ confirmé
+  's1-callie':         '01060000-03590902', // ✓ confirmé
+  's1-marie':          '01070000-035a0902', // ✓ confirmé
+  's1-boy-purple':     '01080000-035b0902', // ✓ confirmé
+  's1-girl-green':     '01410000-035c0902', // ✓ confirmé
+  's3-inkling-yellow': '08000100-04150402', // ✓ confirmé
+  's3-shiver':         '08070000-04330402', // ✓ confirmé
+  's3-frye':           '08080000-04340402', // ✓ confirmé
+  's3-bigman':         '08090000-04350402', // ✓ confirmé
+};
+
+// ── Fetch images (hardcodé + fallback API)
 async function fetchAmiiboImages() {
+  // Étape 1 : appliquer les IDs hardcodés connus
+  AMIIBO_DATA.forEach(a => {
+    if (KNOWN_IMAGE_IDS[a.id]) {
+      a.image = IMG_BASE + KNOWN_IMAGE_IDS[a.id] + '.png';
+    }
+  });
+
+  // Étape 2 : API fallback pour les amiibo sans image
   try {
     const res = await fetch('https://www.amiiboapi.com/api/amiibo/?gameseries=Splatoon');
     const data = await res.json();
     const apiList = data.amiibo.filter(a => a.type === 'Figure');
 
-    // Groupe par nom anglais
-    const nameGroups = {};
+    const sortByRelease = (a, b) => {
+      const da = new Date(a.release?.eu || a.release?.jp || a.release?.na || '9999');
+      const db = new Date(b.release?.eu || b.release?.jp || b.release?.na || '9999');
+      return da - db;
+    };
+
+    // Groupe exact par nom, trié par date de sortie
+    const exactGroups = {};
     apiList.forEach(api => {
       const key = api.name.toLowerCase().trim();
-      if (!nameGroups[key]) nameGroups[key] = [];
-      nameGroups[key].push(api.image);
+      if (!exactGroups[key]) exactGroups[key] = [];
+      exactGroups[key].push(api);
     });
+    Object.values(exactGroups).forEach(g => g.sort(sortByRelease));
 
-    AMIIBO_DATA.forEach(amiibo => {
-      const key = amiibo.nameEN.toLowerCase().trim();
-      if (nameGroups[key] && nameGroups[key][amiibo.variantIndex]) {
-        amiibo.image = nameGroups[key][amiibo.variantIndex];
+    // Groupe normalisé (supprime "- Yellow", "- Blue" etc.)
+    const normGroups = {};
+    apiList.forEach(api => {
+      const key = api.name.toLowerCase().replace(/\s*[-–]\s*\w+$/, '').trim();
+      if (!normGroups[key]) normGroups[key] = [];
+      normGroups[key].push(api);
+    });
+    Object.values(normGroups).forEach(g => g.sort(sortByRelease));
+
+    AMIIBO_DATA.forEach(a => {
+      if (a.image) return; // déjà défini
+      const key = a.nameEN.toLowerCase().trim();
+      const pool = exactGroups[key] || normGroups[key] || [];
+      if (pool[a.variantIndex]) {
+        a.image = pool[a.variantIndex].image;
       }
     });
   } catch (e) {
     console.warn('AmiiToon: API image fetch failed', e);
   }
+}
+
+// ── Mode clair / sombre
+const THEME_KEY = 'amiitoon_theme';
+function loadTheme() {
+  const saved = localStorage.getItem(THEME_KEY) || 'dark';
+  document.documentElement.setAttribute('data-theme', saved);
+  updateThemeBtn(saved);
+}
+function toggleTheme() {
+  const current = document.documentElement.getAttribute('data-theme') || 'dark';
+  const next = current === 'dark' ? 'light' : 'dark';
+  document.documentElement.setAttribute('data-theme', next);
+  localStorage.setItem(THEME_KEY, next);
+  updateThemeBtn(next);
+}
+function updateThemeBtn(theme) {
+  const btn = document.getElementById('theme-toggle');
+  if (!btn) return;
+  btn.innerHTML = theme === 'dark'
+    ? `<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>`
+    : `<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>`;
+  btn.title = theme === 'dark' ? 'Passer en mode clair' : 'Passer en mode sombre';
 }
 
 // ── Couleurs par jeu
@@ -683,7 +747,7 @@ function hideSplash() {
 
 // ── Init
 async function init() {
-  // Splash auto-hide after 2s
+  loadTheme();
   setTimeout(hideSplash, 2000);
   document.getElementById('splash').addEventListener('click', hideSplash);
 
