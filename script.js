@@ -246,7 +246,7 @@ const AMIIBO_DATA = [
   {
     id: 's3-inkling-yellow',
     nameFR: 'Inkling Jaune',
-    nameEN: 'Inkling',
+    nameEN: 'Inkling - Yellow',
     variantIndex: 0,
     game: 3, wave: 'Vague 7',
     releaseEU: '11/11/2022', releaseJP: '11/11/2022', releaseNA: '11/11/2022',
@@ -433,68 +433,57 @@ let owned = loadOwned();
 // ── État de l'application
 let currentFilter = 'all'; // 'all' | 1 | 2 | 3 | 'raiders' | 'info'
 
-// ── IDs d'images confirmés (GitHub raw AmiiboAPI)
+// ── IDs d'images confirmés à 100% (depuis amiibo.json du repo AmiiboAPI)
 const IMG_BASE = 'https://raw.githubusercontent.com/N3evin/AmiiboAPI/master/images/icon_';
 const KNOWN_IMAGE_IDS = {
-  's1-girl-orange':    '01010000-03560902', // ✓ confirmé
-  's1-squid-green':    '01050000-03580902', // ✓ confirmé
-  's1-callie':         '01060000-03590902', // ✓ confirmé
-  's1-marie':          '01070000-035a0902', // ✓ confirmé
-  's1-boy-purple':     '01080000-035b0902', // ✓ confirmé
-  's1-girl-green':     '01410000-035c0902', // ✓ confirmé
-  's3-inkling-yellow': '08000100-04150402', // ✓ confirmé
-  's3-shiver':         '08070000-04330402', // ✓ confirmé
-  's3-frye':           '08080000-04340402', // ✓ confirmé
-  's3-bigman':         '08090000-04350402', // ✓ confirmé
+  // Seuls les IDs extraits directement du fichier amiibo.json et vérifiés par nom exact
+  's3-inkling-yellow': '08000100-04150402', // ✓ "Inkling - Yellow" dans amiibo.json
+  's3-shiver':         '08070000-04330402', // ✓ "Shiver" dans amiibo.json
+  's3-frye':           '08080000-04340402', // ✓ "Frye" dans amiibo.json
+  's3-bigman':         '08090000-04350402', // ✓ "Big Man" dans amiibo.json
 };
 
-// ── Fetch images (hardcodé + fallback API)
+// ── Fetch images via API amiiboapi.com (pour tous les amiibo sans ID hardcodé)
 async function fetchAmiiboImages() {
-  // Étape 1 : appliquer les IDs hardcodés connus
+  // Étape 1 : appliquer les IDs hardcodés confirmés
   AMIIBO_DATA.forEach(a => {
     if (KNOWN_IMAGE_IDS[a.id]) {
       a.image = IMG_BASE + KNOWN_IMAGE_IDS[a.id] + '.png';
     }
   });
 
-  // Étape 2 : API fallback pour les amiibo sans image
+  // Étape 2 : API pour les amiibo sans image
   try {
     const res = await fetch('https://www.amiiboapi.com/api/amiibo/?gameseries=Splatoon');
     const data = await res.json();
     const apiList = data.amiibo.filter(a => a.type === 'Figure');
 
+    // Tri par date de sortie (plus ancien en premier → variantIndex=0 = plus ancien)
     const sortByRelease = (a, b) => {
       const da = new Date(a.release?.eu || a.release?.jp || a.release?.na || '9999');
       const db = new Date(b.release?.eu || b.release?.jp || b.release?.na || '9999');
       return da - db;
     };
 
-    // Groupe exact par nom, trié par date de sortie
-    const exactGroups = {};
+    // Grouper par nom exact, trié par date
+    const groups = {};
     apiList.forEach(api => {
       const key = api.name.toLowerCase().trim();
-      if (!exactGroups[key]) exactGroups[key] = [];
-      exactGroups[key].push(api);
+      if (!groups[key]) groups[key] = [];
+      groups[key].push(api);
     });
-    Object.values(exactGroups).forEach(g => g.sort(sortByRelease));
+    Object.values(groups).forEach(g => g.sort(sortByRelease));
 
-    // Groupe normalisé (supprime "- Yellow", "- Blue" etc.)
-    const normGroups = {};
-    apiList.forEach(api => {
-      const key = api.name.toLowerCase().replace(/\s*[-–]\s*\w+$/, '').trim();
-      if (!normGroups[key]) normGroups[key] = [];
-      normGroups[key].push(api);
-    });
-    Object.values(normGroups).forEach(g => g.sort(sortByRelease));
-
+    // Assigner les images
     AMIIBO_DATA.forEach(a => {
-      if (a.image) return; // déjà défini
+      if (a.image) return; // déjà défini par hardcoded
       const key = a.nameEN.toLowerCase().trim();
-      const pool = exactGroups[key] || normGroups[key] || [];
+      const pool = groups[key] || [];
       if (pool[a.variantIndex]) {
         a.image = pool[a.variantIndex].image;
       }
     });
+
   } catch (e) {
     console.warn('AmiiToon: API image fetch failed', e);
   }
