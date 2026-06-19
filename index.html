@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AmiiToon — Tracker Splatoon</title>
+  <meta name="description" content="Suis ta collection d'amiibo Splatoon avec AmiiToon.">
+  <meta name="theme-color" content="#F9E45B">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- ═══ SPLASH ═══ -->
+  <div id="splash">
+    <div class="splash-drips">
+      <div class="drip"></div>
+      <div class="drip"></div>
+      <div class="drip"></div>
+      <div class="drip"></div>
+      <div class="drip"></div>
+    </div>
+    <div class="splash-title">AmiiToon</div>
+    <div class="splash-sub">Collection Tracker · Splatoon</div>
+    <div class="splash-hint">Toucher pour continuer</div>
+  </div>
+
+  <!-- ═══ MENU OVERLAY ═══ -->
+  <div id="menu-overlay" onclick="closeMenu()"></div>
+
+  <!-- ═══ SIDE MENU ═══ -->
+  <nav id="side-menu">
+    <div class="menu-logo">AmiiToon</div>
+
+    <div class="menu-section-label">Jeux</div>
+
+    <div class="menu-item active" data-filter="all" onclick="setFilter('all')">
+      <span class="menu-dot" style="background: linear-gradient(135deg, #FF6B2B, #FF4F9B, #F9E45B)"></span>
+      Tous les amiibo
+    </div>
+    <div class="menu-item" data-filter="1" onclick="setFilter(1)">
+      <span class="menu-dot" style="background: var(--s1)"></span>
+      Splatoon
+    </div>
+    <div class="menu-item" data-filter="2" onclick="setFilter(2)">
+      <span class="menu-dot" style="background: var(--s2)"></span>
+      Splatoon 2
+    </div>
+    <div class="menu-item" data-filter="3" onclick="setFilter(3)">
+      <span class="menu-dot" style="background: var(--s3)"></span>
+      Splatoon 3
+    </div>
+    <div class="menu-item" data-filter="raiders" onclick="setFilter('raiders')">
+      <span class="menu-dot" style="background: var(--raiders)"></span>
+      Splatoon Raiders
+    </div>
+
+    <div class="menu-section-label" style="margin-top: 0.5rem">À propos</div>
+    <div class="menu-item" data-filter="info" onclick="setFilter('info')">
+      <span class="menu-dot" style="background: var(--text-muted)"></span>
+      Infos
+    </div>
+
+    <div class="menu-footer">
+      AmiiToon n'est pas affilié à Nintendo.<br>
+      Données : amiiboapi.com
+    </div>
+  </nav>
+
+  <!-- ═══ HEADER ═══ -->
+  <header>
+    <button class="hamburger" onclick="toggleMenu()" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+    <div id="page-title">AmiiToon</div>
+    <div class="header-badge">FR</div>
+  </header>
+
+  <!-- ═══ PROGRESS ═══ -->
+  <section class="progress-section">
+    <div class="progress-header">
+      <div class="progress-label">
+        <svg class="label-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+          <ellipse cx="12" cy="8" rx="5.5" ry="6.5"/>
+          <path d="M6.5 13c-1 2-1.5 4-0.5 6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" fill="none"/>
+          <path d="M9 14.5c-0.5 2.5-0.5 4.5-0.5 6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" fill="none"/>
+          <path d="M12 15v6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" fill="none"/>
+          <path d="M15 14.5c0.5 2.5 0.5 4.5 0.5 6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" fill="none"/>
+          <path d="M17.5 13c1 2 1.5 4 0.5 6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" fill="none"/>
+        </svg>
+        Ma collection
+      </div>
+      <div class="progress-stats">
+        <span id="progress-text">0 / 26</span>
+        <span id="progress-pct">0%</span>
+      </div>
+    </div>
+    <div class="progress-bar-track">
+      <div id="progress-bar-fill" style="width:0%"></div>
+    </div>
+    <div id="progress-remaining">26 restantes</div>
+  </section>
+
+  <!-- ═══ FILTER BAR ═══ -->
+  <div class="filter-bar">
+    <button class="filter-chip active" data-game="all" onclick="filterChip(this, 'all')">Tous</button>
+    <button class="filter-chip" data-game="1" onclick="filterChip(this, 1)">Splatoon</button>
+    <button class="filter-chip" data-game="2" onclick="filterChip(this, 2)">Splatoon 2</button>
+    <button class="filter-chip" data-game="3" onclick="filterChip(this, 3)">Splatoon 3</button>
+    <button class="filter-chip" data-game="raiders" onclick="filterChip(this, 'raiders')">Raiders</button>
+  </div>
+
+  <!-- ═══ GRILLE ═══ -->
+  <main>
+    <div id="amiibo-grid"></div>
+
+    <!-- Section Infos -->
+    <div id="info-section">
+      <div class="info-logo">AmiiToon</div>
+      <div class="info-tagline">Tracker de collection · Amiibo Splatoon</div>
+
+      <div class="info-card">
+        <h3>
+          <svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="6"/><path d="M15.477 12.89L17 22l-5-3-5 3 1.523-9.11"/></svg>
+          Crédits
+        </h3>
+        <div class="info-row">
+          <span class="info-row-label">Studio</span>
+          <span class="info-row-value">IMAGINe Studio</span>
+        </div>
+        <div class="info-row">
+          <span class="info-row-label">Moteur</span>
+          <span class="info-row-value">HwR Engine</span>
+        </div>
+        <div class="info-row">
+          <span class="info-row-label">Version</span>
+          <span class="info-row-value" id="version-display">v1.0.0</span>
+        </div>
+      </div>
+
+      <div class="info-card">
+        <h3>
+          <svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"/><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/></svg>
+          Sources de données
+        </h3>
+        <div class="info-row">
+          <span class="info-row-label">Images</span>
+          <span class="info-row-value">amiiboapi.com</span>
+        </div>
+        <div class="info-row">
+          <span class="info-row-label">Infos jeu</span>
+          <span class="info-row-value">Inkipedia</span>
+        </div>
+        <div class="info-row">
+          <span class="info-row-label">Sauvegarde</span>
+          <span class="info-row-value">Locale (navigateur)</span>
+        </div>
+      </div>
+
+      <div class="info-card">
+        <h3>
+          <svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+          Ma collection
+        </h3>
+        <div class="info-row">
+          <span class="info-row-label">Amiibo collectés</span>
+          <span class="info-row-value" id="info-owned-count">—</span>
+        </div>
+        <div class="info-row">
+          <span class="info-row-label">Total disponibles</span>
+          <span class="info-row-value" id="info-total-count">—</span>
+        </div>
+        <div class="info-row" style="cursor:pointer" onclick="confirmReset()">
+          <span class="info-row-label" style="color:#ff6b6b">Réinitialiser la collection</span>
+          <span class="info-row-value" style="color:#ff6b6b">✕</span>
+        </div>
+      </div>
+
+      <p class="info-disclaimer">
+        AmiiToon n'est pas affilié à Nintendo.<br>
+        Splatoon™ est une marque déposée de Nintendo Co., Ltd.<br>
+        Ce site est un projet de collection non officiel.
+      </p>
+    </div>
+  </main>
+
+  <!-- ═══ MODAL ═══ -->
+  <div id="modal-overlay" onclick="handleModalClick(event)">
+    <div id="modal-content"></div>
+  </div>
+
+  <script src="script.js"></script>
+  <script>
+    // ── Filter chips (synced avec menu)
+    function filterChip(el, f) {
+      document.querySelectorAll('.filter-chip').forEach(c => c.classList.remove('active'));
+      el.classList.add('active');
+      currentFilter = f;
+
+      document.querySelectorAll('.menu-item').forEach(m => m.classList.remove('active'));
+      document.querySelector(`[data-filter="${f}"]`)?.classList.add('active');
+
+      const titles = { all: 'AmiiToon', 1: 'Splatoon', 2: 'Splatoon 2', 3: 'Splatoon 3', raiders: 'Splatoon Raiders' };
+      document.getElementById('page-title').textContent = titles[f] || 'AmiiToon';
+
+      renderGrid();
+    }
+
+    // ── Modal click outside
+    function handleModalClick(e) {
+      if (e.target === document.getElementById('modal-overlay')) closeModal();
+    }
+
+    // ── Keyboard ESC
+    document.addEventListener('keydown', e => {
+      if (e.key === 'Escape') {
+        closeModal();
+        closeMenu();
+      }
+    });
+
+    // ── Info section live stats
+    const origSetFilter = setFilter;
+    setFilter = function(f) {
+      origSetFilter(f);
+      if (f === 'info') updateInfoStats();
+    };
+    function updateInfoStats() {
+      const ownedCount = AMIIBO_DATA.filter(a => !a.comingSoon && owned[a.id]).length;
+      document.getElementById('info-owned-count').textContent = ownedCount;
+      document.getElementById('info-total-count').textContent = TOTAL_COUNT;
+      document.getElementById('version-display').textContent = 'v' + VERSION;
+    }
+
+    // ── Reset collection
+    function confirmReset() {
+      if (confirm('Réinitialiser toute ta collection ? Cette action est irréversible.')) {
+        owned = {};
+        saveOwned(owned);
+        updateProgress();
+        renderGrid();
+        updateInfoStats();
+      }
+    }
+  </script>
+</body>
+</html>
