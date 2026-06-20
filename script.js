@@ -337,7 +337,7 @@ const AMIIBO_DATA = [
     variantIndex: 1,
     game: 3, wave: 'Vague 9',
     releaseEU: '05/09/2024', releaseJP: '05/09/2024', releaseNA: '05/09/2024',
-    description: "Ayo dans sa tenue d'Alterna, inspirée du DLC Le Retour des Mammifèriens. Ses couleurs noir et jaune acide rappellent son rôle de Neo-Agent 3. Particularité unique : les détails de la figurine brillent sous lumière noire.",
+    description: "Ayo dans sa tenue d'Alterna, inspirée du DLC. Ses couleurs noir et jaune acide rappellent son rôle de Neo-Agent 3. Particularité unique : les détails de la figurine brillent sous lumière noire.",
     gear: {
       s3: 'Réplique Poignée Héroïque (Last-Ditch Effort) · Réplique Combinaison de Survie (Ink Resistance Up) · Réplique Chaussures de Survie (Stealth Jump)',
       bonus: 'Permet de revisiter le Grand Festival (3 variantes) depuis le menu amiibo — depuis la v9.2.0'
