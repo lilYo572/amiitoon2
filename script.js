@@ -66,7 +66,8 @@ const AMIIBO_DATA = [
     gear: {
       s1: 'Concerts exclusifs dans Inkopolis Plaza',
       s2: 'Casque Héroïque Réplique · Veste Héroïque Réplique · Chaussures Héroïques Réplique (après mode Histoire)',
-      s3: 'Casque Héroïque Réplique · Veste Héroïque Réplique · Chaussures Héroïques Réplique'
+      s3: 'Casque Héroïque Réplique · Veste Héroïque Réplique · Chaussures Héroïques Réplique',
+      bonus: 'Permet de revisiter le Grand Festival (3 variantes) depuis le menu amiibo — depuis la v9.2.0'
     },
     comingSoon: false, image: null
   },
@@ -81,7 +82,8 @@ const AMIIBO_DATA = [
     gear: {
       s1: 'Concerts exclusifs dans Inkopolis Plaza',
       s2: 'Casque Armure Réplique · Veste Armure Réplique · Bottes Armure Réplique (après mode Histoire)',
-      s3: 'Casque Armure Réplique · Veste Armure Réplique · Bottes Armure Réplique'
+      s3: 'Casque Armure Réplique · Veste Armure Réplique · Bottes Armure Réplique',
+      bonus: 'Permet de revisiter le Grand Festival (3 variantes) depuis le menu amiibo — depuis la v9.2.0'
     },
     comingSoon: false, image: null
   },
@@ -181,7 +183,8 @@ const AMIIBO_DATA = [
     description: "Perle est l'animatrice impulsive et ultra-énergique du duo Les Chouikettes (Off the Hook). Petite en taille mais immense en attitude, sa voix est sa plus grande arme. Elle est le personnage central de Splatoon 2.",
     gear: {
       s2: 'Couronne Nacre · Hoodie Nacre · Baskets Nacre',
-      s3: 'Couronne Nacre L (Sub Resistance Up) · Couronne Nacre S (Sub Resistance Up) · Hoodie Nacre · Baskets Nacre'
+      s3: 'Couronne Nacre L (Sub Resistance Up) · Couronne Nacre S (Sub Resistance Up) · Hoodie Nacre · Baskets Nacre',
+      bonus: 'Permet de revisiter le Grand Festival (3 variantes) depuis le menu amiibo — depuis la v9.2.0'
     },
     comingSoon: false, image: null
   },
@@ -195,7 +198,8 @@ const AMIIBO_DATA = [
     description: "Coralie est la moitié calme et analytique des Chouikettes. Ancienne Octaling, elle a fait le choix de rejoindre la société Inkling. DJ et ingénieure de génie, elle apporte un contrepoint parfait à l'énergie de Perle.",
     gear: {
       s2: 'Coiffure Coralie · Polo Rose Crevette (Ink Resistance Up) · Bottes Coralie',
-      s3: 'Coiffure Coralie · Polo Rose Crevette · Bottes Coralie'
+      s3: 'Coiffure Coralie · Polo Rose Crevette · Bottes Coralie',
+      bonus: 'Permet de revisiter le Grand Festival (3 variantes) depuis le menu amiibo — depuis la v9.2.0'
     },
     comingSoon: false, image: null
   },
@@ -292,7 +296,8 @@ const AMIIBO_DATA = [
     releaseEU: '17/11/2023', releaseJP: '17/11/2023', releaseNA: '17/11/2023',
     description: "Raimi est la leader charismatique des Grands Fonds (Deep Cut). Mystérieuse et imperturbable, elle est une combattante redoutable dont les thèmes marins inspirent la terreur. Elle préside les Splatfests de Splatoon 3.",
     gear: {
-      s3: 'Masque Hohojiro (Sub Resistance Up) · Top Chomper (Ink Saver Main) · Platfins Requin (Swim Speed Up)'
+      s3: 'Masque Hohojiro (Sub Resistance Up) · Top Chomper (Ink Saver Main) · Platfins Requin (Swim Speed Up)',
+      bonus: 'Permet de revisiter le Grand Festival (3 variantes) depuis le menu amiibo — depuis la v9.2.0'
     },
     comingSoon: false, image: null
   },
@@ -305,7 +310,8 @@ const AMIIBO_DATA = [
     releaseEU: '17/11/2023', releaseJP: '17/11/2023', releaseNA: '17/11/2023',
     description: "Angie est la membre la plus impulsive et explosive des Grands Fonds. Son style électrique et ses anguilles de combat font d'elle un personnage aussi dangereux qu'adorable. Sa figurine capture parfaitement son énergie débordante.",
     gear: {
-      s3: 'Masque Onaga (Ink Recovery Up) · Tank Anguille (Run Speed Up) · Chaussettes Anguille (Swim Speed Up)'
+      s3: 'Masque Onaga (Ink Recovery Up) · Tank Anguille (Run Speed Up) · Chaussettes Anguille (Swim Speed Up)',
+      bonus: 'Permet de revisiter le Grand Festival (3 variantes) depuis le menu amiibo — depuis la v9.2.0'
     },
     comingSoon: false, image: null
   },
@@ -318,7 +324,8 @@ const AMIIBO_DATA = [
     releaseEU: '17/11/2023', releaseJP: '17/11/2023', releaseNA: '17/11/2023',
     description: "Pasquale est la raie manta géante membre des Grands Fonds. Doux et timide malgré sa taille imposante, il s'exprime uniquement par des sons. Sa figurine est la plus grande et spectaculaire du trio Deep Cut.",
     gear: {
-      s3: 'Masque Manta (Ink Saver Sub) · Grand Imperméable (Special Power Up) · Bottes Manta (Object Shredder)'
+      s3: 'Masque Manta (Ink Saver Sub) · Grand Imperméable (Special Power Up) · Bottes Manta (Object Shredder)',
+      bonus: 'Permet de revisiter le Grand Festival (3 variantes) depuis le menu amiibo — depuis la v9.2.0'
     },
     comingSoon: false, image: null
   },
@@ -332,7 +339,8 @@ const AMIIBO_DATA = [
     releaseEU: '05/09/2024', releaseJP: '05/09/2024', releaseNA: '05/09/2024',
     description: "Ayo dans sa tenue d'Alterna, inspirée du DLC Le Retour des Mammifèriens. Ses couleurs noir et jaune acide rappellent son rôle de Neo-Agent 3. Particularité unique : les détails de la figurine brillent sous lumière noire.",
     gear: {
-      s3: 'Réplique Poignée Héroïque (Last-Ditch Effort) · Réplique Combinaison de Survie (Ink Resistance Up) · Réplique Chaussures de Survie (Stealth Jump)'
+      s3: 'Réplique Poignée Héroïque (Last-Ditch Effort) · Réplique Combinaison de Survie (Ink Resistance Up) · Réplique Chaussures de Survie (Stealth Jump)',
+      bonus: 'Permet de revisiter le Grand Festival (3 variantes) depuis le menu amiibo — depuis la v9.2.0'
     },
     comingSoon: false, image: null
   },
@@ -345,7 +353,8 @@ const AMIIBO_DATA = [
     releaseEU: '05/09/2024', releaseJP: '05/09/2024', releaseNA: '05/09/2024',
     description: "Oly dans sa tenue de Capitaine, héritée de son rôle dans Splatoon 3. Élégante et déterminée, sa figurine capture la sagesse de l'ancienne Agent 3 devenue guide. Comme Ayo, elle possède des détails luminescents sous UV.",
     gear: {
-      s3: 'Réplique Casquette Capitaine (Ink Resistance Up) · Réplique Poncho (Ninja Squid) · Réplique Tongs (Special Power Up)'
+      s3: 'Réplique Casquette Capitaine (Ink Resistance Up) · Réplique Poncho (Ninja Squid) · Réplique Tongs (Special Power Up)',
+      bonus: 'Permet de revisiter le Grand Festival (3 variantes) depuis le menu amiibo — depuis la v9.2.0'
     },
     comingSoon: false, image: null
   },
@@ -386,7 +395,7 @@ const AMIIBO_DATA = [
     game: 'raiders', wave: 'Raiders',
     releaseEU: '23/07/2026', releaseJP: '23/07/2026', releaseNA: '23/07/2026',
     description: "Raimi dans sa tenue de Splatoon Raiders. Le trio Grands Fonds revient avec des designs inédits pour accompagner le nouveau jeu de la saga. Équipement débloqué à confirmer.",
-    gear: { s3: 'Équipement Raiders — à confirmer' },
+    gear: { s3: 'Équipement Raiders — à confirmer', bonus: 'Fonction Grand Festival probable (à confirmer à la sortie)' },
     comingSoon: true, image: null
   },
   {
@@ -397,7 +406,7 @@ const AMIIBO_DATA = [
     game: 'raiders', wave: 'Raiders',
     releaseEU: '23/07/2026', releaseJP: '23/07/2026', releaseNA: '23/07/2026',
     description: "Angie dans sa tenue de Splatoon Raiders. Une nouvelle aventure pour le membre le plus fougueux des Grands Fonds. Équipement débloqué à confirmer.",
-    gear: { s3: 'Équipement Raiders — à confirmer' },
+    gear: { s3: 'Équipement Raiders — à confirmer', bonus: 'Fonction Grand Festival probable (à confirmer à la sortie)' },
     comingSoon: true, image: null
   },
   {
@@ -408,7 +417,7 @@ const AMIIBO_DATA = [
     game: 'raiders', wave: 'Raiders',
     releaseEU: '23/07/2026', releaseJP: '23/07/2026', releaseNA: '23/07/2026',
     description: "Pasquale dans sa tenue de Splatoon Raiders. La raie manta géante revient pour une nouvelle mission. Équipement débloqué à confirmer.",
-    gear: { s3: 'Équipement Raiders — à confirmer' },
+    gear: { s3: 'Équipement Raiders — à confirmer', bonus: 'Fonction Grand Festival probable (à confirmer à la sortie)' },
     comingSoon: true, image: null
   }
 ];
@@ -470,7 +479,10 @@ const AMIIBO_IMAGES = {
   's3-marie-alterna':   AL + 'marie-alterna-898259f385f11349cee3a984b1194a4cf13d678b27bee18e7a6ad5c84e92009e.png',
   's3-pearl-sideorder': AL + 'pearl-side-order-9d57aa508780a405aef59128538a1499c6b86fd5eb879cfc4ac6a98bbe0d8256.png',
   's3-marina-sideorder':AL + 'marina-side-order-f8ab4b11486a435b2f8e4e4f9d6c3d00d7331ae61e03e66a84f621a339d628f6.png',
-  // Raiders — pas encore sortis (pas d'image disponible)
+  // Splatoon Raiders — images officielles déjà publiées (23/07/2026)
+  'raiders-shiver':     AL + 'shiver-splatoon-raiders-6f6fefeb7ae406dd98e74b57673e7e0308901c8073a5ebb115d65d010f351367.png',
+  'raiders-frye':       AL + 'frye-splatoon-raiders-5ba1f6b4e7fce4f6e88334a6c66ffd2a09196b95fd377352b609b65c66ee46e5.png',
+  'raiders-bigman':     AL + 'big-man-splatoon-raiders-b1340eafa13037d6dd9635a7cf9773d07ac273dcd15bcbe9f306d9698984c81c.png',
 };
 
 // ── Application des images (aucun appel API nécessaire)
