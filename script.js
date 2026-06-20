@@ -1,9 +1,9 @@
 // =============================================
 //  AmiiToon — Script principal
-//  IMAGINe Studio × HwR Engine — v1.0.0
+//  IMAGINe Studio × HwR Engine — v1.0.2
 // =============================================
 
-const VERSION = '1.0.0';
+const VERSION = '1.0.2';
 const STORAGE_KEY = 'amiitoon_owned';
 
 // ── Données amiibo (du plus ancien au plus récent pour l'API matching)
@@ -62,7 +62,7 @@ const AMIIBO_DATA = [
     variantIndex: 0,
     game: 1, wave: 'Vague 2',
     releaseEU: '07/07/2016', releaseJP: '07/07/2016', releaseNA: '08/07/2016',
-    description: "Ayo est la moitié pop-star du duo Les Chouettes (Squid Sisters). Exubérante et énergique, elle est l'annonciatrice des Splatfests dans Inkopolis. Son sort dans Splatoon 2 est au cœur de l'intrigue principale.",
+    description: "Ayo est la moitié pop-star du duo des Calamazones. Exubérante et énergique, elle est l'annonciatrice des Splatfests dans Chromapolis. Son sort dans Splatoon 2 est au cœur de l'intrigue principale.",
     gear: {
       s1: 'Concerts exclusifs dans Inkopolis Plaza',
       s2: 'Casque Héroïque Réplique · Veste Héroïque Réplique · Chaussures Héroïques Réplique (après mode Histoire)',
@@ -78,7 +78,7 @@ const AMIIBO_DATA = [
     variantIndex: 0,
     game: 1, wave: 'Vague 2',
     releaseEU: '07/07/2016', releaseJP: '07/07/2016', releaseNA: '08/07/2016',
-    description: "Oly est la moitié cool et sarcastique du duo Les Chouettes. Guide du joueur dans Octo Valley (Splatoon 1) et professeur de calme absolu. Elle joue un rôle clé dans Splatoon 2.",
+    description: "Oly est la moitié cool et sarcastique du duo des Calamazones. Guide du joueur dans l'Octavallée (Splatoon) et professeure de calme absolu. Elle joue un rôle clé dans Splatoon 2.",
     gear: {
       s1: 'Concerts exclusifs dans Inkopolis Plaza',
       s2: 'Casque Armure Réplique · Veste Armure Réplique · Bottes Armure Réplique (après mode Histoire)',
@@ -122,7 +122,7 @@ const AMIIBO_DATA = [
     variantIndex: 1,
     game: 1, wave: 'Vague 2',
     releaseEU: '07/07/2016', releaseJP: '07/07/2016', releaseNA: '08/07/2016',
-    description: "Recoloriage orange du Calamar Inkling original. Fait partie de la vague 2, aux côtés des Squid Sisters. Sa teinte chaude le distingue du calamar vert de la première vague.",
+    description: "Recoloriage orange du Calamar Inkling original. Fait partie de la vague 2, aux côtés des Calamazones. Sa teinte chaude le distingue du calamar vert de la première vague.",
     gear: {
       s2: 'Masque Armure Mk1 · Armure Mk1 · Bottes Armure Mk1',
       s3: 'Masque Armure Mk1 · Armure Mk1 · Bottes Armure Mk1'
@@ -180,7 +180,7 @@ const AMIIBO_DATA = [
     variantIndex: 0,
     game: 2, wave: 'Vague 4',
     releaseEU: '13/07/2018', releaseJP: '13/07/2018', releaseNA: '13/07/2018',
-    description: "Perle est l'animatrice impulsive et ultra-énergique du duo Les Chouikettes (Off the Hook). Petite en taille mais immense en attitude, sa voix est sa plus grande arme. Elle est le personnage central de Splatoon 2.",
+    description: "Perle est l'animatrice impulsive et ultra-énergique du duo des Tenta-Cool. Petite en taille mais immense en attitude, sa voix est sa plus grande arme. Elle est le personnage central de Splatoon 2.",
     gear: {
       s2: 'Couronne Nacre · Hoodie Nacre · Baskets Nacre',
       s3: 'Couronne Nacre L (Sub Resistance Up) · Couronne Nacre S (Sub Resistance Up) · Hoodie Nacre · Baskets Nacre',
@@ -195,7 +195,7 @@ const AMIIBO_DATA = [
     variantIndex: 0,
     game: 2, wave: 'Vague 4',
     releaseEU: '13/07/2018', releaseJP: '13/07/2018', releaseNA: '13/07/2018',
-    description: "Coralie est la moitié calme et analytique des Chouikettes. Ancienne Octaling, elle a fait le choix de rejoindre la société Inkling. DJ et ingénieure de génie, elle apporte un contrepoint parfait à l'énergie de Perle.",
+    description: "Coralie est la moitié calme et analytique des Tenta-Cool. Ancienne Octaling, elle a fait le choix de rejoindre la société Inkling. DJ et ingénieure de génie, elle apporte un contrepoint parfait à l'énergie de Perle.",
     gear: {
       s2: 'Coiffure Coralie · Polo Rose Crevette (Ink Resistance Up) · Bottes Coralie',
       s3: 'Coiffure Coralie · Polo Rose Crevette · Bottes Coralie',
@@ -294,7 +294,7 @@ const AMIIBO_DATA = [
     variantIndex: 0,
     game: 3, wave: 'Vague 8',
     releaseEU: '17/11/2023', releaseJP: '17/11/2023', releaseNA: '17/11/2023',
-    description: "Raimi est la leader charismatique des Grands Fonds (Deep Cut). Mystérieuse et imperturbable, elle est une combattante redoutable dont les thèmes marins inspirent la terreur. Elle préside les Splatfests de Splatoon 3.",
+    description: "Raimi est la leader charismatique des Tridenfer. Mystérieuse et imperturbable, elle est une combattante redoutable dont les thèmes marins inspirent la terreur. Elle préside les Splatfests de Splatoon 3.",
     gear: {
       s3: 'Masque Hohojiro (Sub Resistance Up) · Top Chomper (Ink Saver Main) · Platfins Requin (Swim Speed Up)',
       bonus: 'Permet de revisiter le Grand Festival (3 variantes) depuis le menu amiibo — depuis la v9.2.0'
@@ -308,7 +308,7 @@ const AMIIBO_DATA = [
     variantIndex: 0,
     game: 3, wave: 'Vague 8',
     releaseEU: '17/11/2023', releaseJP: '17/11/2023', releaseNA: '17/11/2023',
-    description: "Angie est la membre la plus impulsive et explosive des Grands Fonds. Son style électrique et ses anguilles de combat font d'elle un personnage aussi dangereux qu'adorable. Sa figurine capture parfaitement son énergie débordante.",
+    description: "Angie est la membre la plus impulsive et explosive des Tridenfer. Son style électrique et ses anguilles de combat font d'elle un personnage aussi dangereux qu'adorable. Sa figurine capture parfaitement son énergie débordante.",
     gear: {
       s3: 'Masque Onaga (Ink Recovery Up) · Tank Anguille (Run Speed Up) · Chaussettes Anguille (Swim Speed Up)',
       bonus: 'Permet de revisiter le Grand Festival (3 variantes) depuis le menu amiibo — depuis la v9.2.0'
@@ -322,7 +322,7 @@ const AMIIBO_DATA = [
     variantIndex: 0,
     game: 3, wave: 'Vague 8',
     releaseEU: '17/11/2023', releaseJP: '17/11/2023', releaseNA: '17/11/2023',
-    description: "Pasquale est la raie manta géante membre des Grands Fonds. Doux et timide malgré sa taille imposante, il s'exprime uniquement par des sons. Sa figurine est la plus grande et spectaculaire du trio Deep Cut.",
+    description: "Pasquale est la raie manta géante membre des Tridenfer. Doux et timide malgré sa taille imposante, il s'exprime uniquement par des sons. Sa figurine est la plus grande et spectaculaire du trio.",
     gear: {
       s3: 'Masque Manta (Ink Saver Sub) · Grand Imperméable (Special Power Up) · Bottes Manta (Object Shredder)',
       bonus: 'Permet de revisiter le Grand Festival (3 variantes) depuis le menu amiibo — depuis la v9.2.0'
@@ -379,7 +379,7 @@ const AMIIBO_DATA = [
     variantIndex: 1,
     game: 3, wave: 'Vague 9',
     releaseEU: '05/09/2024', releaseJP: '05/09/2024', releaseNA: '05/09/2024',
-    description: "Coralie dans sa tenue du DLC Side Order, en blanc et doré. Sa pose dynamique et ses tentacules cyan la distinguent nettement de la version Splatoon 2. Elle partage avec Perle TdO la fonctionnalité du Grand Festival.",
+    description: "Coralie dans sa tenue du DLC Tour de l'Ordre : un tailleur orange avec brassière noire. Sa pose dynamique et ses tentacules teintées d'indigo la distinguent nettement de la version Splatoon 2.",
     gear: {
       s3: 'Casque World Tour (Ink Recovery Up) · Veste World Tour (Run Speed Up) · Talons World Tour (Special Power Up)',
       bonus: 'Permet de revisiter le Grand Festival (3 variantes) depuis le menu amiibo — depuis la v9.2.0'
@@ -394,7 +394,7 @@ const AMIIBO_DATA = [
     variantIndex: 0,
     game: 'raiders', wave: 'Raiders',
     releaseEU: '23/07/2026', releaseJP: '23/07/2026', releaseNA: '23/07/2026',
-    description: "Raimi dans sa tenue de Splatoon Raiders. Le trio Grands Fonds revient avec des designs inédits pour accompagner le nouveau jeu de la saga. Équipement débloqué à confirmer.",
+    description: "Raimi dans sa tenue de Splatoon Raiders. Le trio des Tridenfer revient avec des designs inédits pour accompagner le nouveau jeu de la saga. Équipement débloqué à confirmer.",
     gear: { s3: 'Équipement Raiders — à confirmer', bonus: 'Fonction Grand Festival probable (à confirmer à la sortie)' },
     comingSoon: true, image: null
   },
@@ -405,7 +405,7 @@ const AMIIBO_DATA = [
     variantIndex: 0,
     game: 'raiders', wave: 'Raiders',
     releaseEU: '23/07/2026', releaseJP: '23/07/2026', releaseNA: '23/07/2026',
-    description: "Angie dans sa tenue de Splatoon Raiders. Une nouvelle aventure pour le membre le plus fougueux des Grands Fonds. Équipement débloqué à confirmer.",
+    description: "Angie dans sa tenue de Splatoon Raiders. Une nouvelle aventure pour le membre le plus fougueux des Tridenfer. Équipement débloqué à confirmer.",
     gear: { s3: 'Équipement Raiders — à confirmer', bonus: 'Fonction Grand Festival probable (à confirmer à la sortie)' },
     comingSoon: true, image: null
   },
