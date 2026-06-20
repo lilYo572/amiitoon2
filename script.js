@@ -280,7 +280,7 @@ const AMIIBO_DATA = [
     variantIndex: 0,
     game: 3, wave: 'Vague 7',
     releaseEU: '11/11/2022', releaseJP: '11/11/2022', releaseNA: '11/11/2022',
-    description: "Salmio est le petit compagnon Salmonoïde du joueur dans Splatoon 3. Adorable et dévoué, il accompagne l'Agent 3 dans son aventure. Sa figurine est l'une des plus mignonnes de toute la saga.",
+    description: "Salmio est le petit compagnon Salmonoïde du joueur dans Splatoon 3. Adorable et dévoué, il accompagne Numéro 3 dans son aventure. Sa figurine est l'une des plus mignonnes de toute la saga.",
     gear: {
       s3: 'Items quotidiens aléatoires · Sphère de matière · Coffre de ressources (mode Histoire)'
     },
@@ -337,7 +337,7 @@ const AMIIBO_DATA = [
     variantIndex: 1,
     game: 3, wave: 'Vague 9',
     releaseEU: '05/09/2024', releaseJP: '05/09/2024', releaseNA: '05/09/2024',
-    description: "Ayo dans sa tenue d'Alterna, inspirée du DLC. Ses couleurs noir et jaune acide rappellent son rôle de Neo-Agent 3. Particularité unique : les détails de la figurine brillent sous lumière noire.",
+    description: "Ayo dans sa tenue d'Alterna, inspirée de sa tenue de Numéro 1 dans le mode Histoire Le Retour des Mammifériens. Ses couleurs noir et jaune acide rappellent son rôle au sein de l'escadron Espadon. Particularité unique : les détails de la figurine brillent sous lumière noire.",
     gear: {
       s3: 'Réplique Poignée Héroïque (Last-Ditch Effort) · Réplique Combinaison de Survie (Ink Resistance Up) · Réplique Chaussures de Survie (Stealth Jump)',
       bonus: 'Permet de revisiter le Grand Festival (3 variantes) depuis le menu amiibo — depuis la v9.2.0'
@@ -351,7 +351,7 @@ const AMIIBO_DATA = [
     variantIndex: 1,
     game: 3, wave: 'Vague 9',
     releaseEU: '05/09/2024', releaseJP: '05/09/2024', releaseNA: '05/09/2024',
-    description: "Oly dans sa tenue de Capitaine, héritée de son rôle dans Splatoon 3. Élégante et déterminée, sa figurine capture la sagesse de l'ancienne Agent 3 devenue guide. Comme Ayo, elle possède des détails luminescents sous UV.",
+    description: "Oly dans sa tenue de Capitaine, héritée de son rôle de Numéro 2 dans le mode Histoire Le Retour des Mammifériens. Élégante et déterminée, sa figurine capture la sagesse de la guide de l'escadron Espadon. Comme Ayo, elle possède des détails luminescents sous UV.",
     gear: {
       s3: 'Réplique Casquette Capitaine (Ink Resistance Up) · Réplique Poncho (Ninja Squid) · Réplique Tongs (Special Power Up)',
       bonus: 'Permet de revisiter le Grand Festival (3 variantes) depuis le menu amiibo — depuis la v9.2.0'
