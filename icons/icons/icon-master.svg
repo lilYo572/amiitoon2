@@ -1,0 +1,41 @@
+<svg width="512" height="512" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#3D6FFF"/>
+      <stop offset="100%" stop-color="#1A2D7A"/>
+    </linearGradient>
+    <linearGradient id="squid" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#FCEE7A"/>
+      <stop offset="100%" stop-color="#F9E45B"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Background rounded square -->
+  <rect width="512" height="512" rx="112" fill="url(#bg)"/>
+
+  <!-- Ink splat behind squid -->
+  <circle cx="256" cy="270" r="150" fill="#0C0A1A" opacity="0.15"/>
+
+  <!-- Squid body -->
+  <g>
+    <!-- Head -->
+    <ellipse cx="256" cy="210" rx="108" ry="120" fill="url(#squid)"/>
+
+    <!-- Eyes -->
+    <ellipse cx="216" cy="195" rx="22" ry="26" fill="#1A1428"/>
+    <ellipse cx="296" cy="195" rx="22" ry="26" fill="#1A1428"/>
+    <circle cx="223" cy="187" r="7" fill="#FFFFFF"/>
+    <circle cx="303" cy="187" r="7" fill="#FFFFFF"/>
+
+    <!-- Tentacles -->
+    <path d="M 160 280 Q 130 340 145 400 Q 150 420 135 430" stroke="url(#squid)" stroke-width="34" stroke-linecap="round" fill="none"/>
+    <path d="M 205 305 Q 190 370 205 425" stroke="url(#squid)" stroke-width="30" stroke-linecap="round" fill="none"/>
+    <path d="M 256 315 Q 256 375 256 435" stroke="url(#squid)" stroke-width="32" stroke-linecap="round" fill="none"/>
+    <path d="M 307 305 Q 322 370 307 425" stroke="url(#squid)" stroke-width="30" stroke-linecap="round" fill="none"/>
+    <path d="M 352 280 Q 382 340 367 400 Q 362 420 377 430" stroke="url(#squid)" stroke-width="34" stroke-linecap="round" fill="none"/>
+  </g>
+
+  <!-- Ink drip accent -->
+  <circle cx="380" cy="120" r="14" fill="#3D6FFF" opacity="0.7"/>
+  <circle cx="400" cy="150" r="8" fill="#3D6FFF" opacity="0.5"/>
+</svg>
